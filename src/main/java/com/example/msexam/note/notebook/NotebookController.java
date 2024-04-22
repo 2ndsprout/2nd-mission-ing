@@ -28,7 +28,13 @@ public class NotebookController {
     @PostMapping("/groups/{notebookId}/books/write")
     public String groupWrite (@PathVariable int notebookId) {
          Notebook parent = this.notebookService.getNotebook(notebookId);
+
+        if (parent.getParent() != null) {
+            return "redirect:/";
+        }
+
         Notebook child = this.notebookService.saveDefault();
+
 
         Note note = this.noteService.saveDefault();
         child.addNote(note);
@@ -37,7 +43,7 @@ public class NotebookController {
         parent.addChild(child);
         this.notebookService.save(parent);
 
-        return "redirect:/";
+        return "redirect:/books/%d".formatted(notebookId);
     }
 
     @GetMapping("/books/{id}")
