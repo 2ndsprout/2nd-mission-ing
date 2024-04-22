@@ -44,7 +44,7 @@ public class NotebookController {
     public String detail (@PathVariable int id, Model model) {
 
         Notebook notebook = this.notebookService.getNotebook(id);
-        int noteId = notebook.getNoteList().getFirst().getId();
+        int noteId = notebook.getNoteList().getLast().getId();
 
         return "redirect:/books/%d/notes/%d".formatted(id, noteId);
     }

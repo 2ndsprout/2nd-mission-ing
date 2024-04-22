@@ -30,9 +30,9 @@ public class MainController {
             return "redirect:/";
         }
         model.addAttribute("notebookList", notebookList);
-        model.addAttribute("targetNotebook",notebookList.getFirst());
-        model.addAttribute("noteList", notebookList.getFirst().getNoteList());
-        model.addAttribute("targetNote", notebookList.getFirst().getNoteList().getFirst());
+        model.addAttribute("targetNotebook",notebookList.getLast());
+        model.addAttribute("noteList", notebookList.getLast().getNoteList());
+        model.addAttribute("targetNote", notebookList.getLast().getNoteList().getLast());
 
         return "main";
     }
